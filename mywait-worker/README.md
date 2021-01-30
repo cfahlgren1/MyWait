@@ -9,4 +9,4 @@ Detectify Worker is a VPS with an Apache Kafka container and a Node.js worker
 --- 
 
 - Apache Kafka Cluster with 3 Brokers and Kafdrop
-- 
+- SocketIO for RealTime processing and analytics
