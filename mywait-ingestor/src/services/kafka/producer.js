@@ -1,6 +1,7 @@
 const { Kafka } = require("kafkajs");
 const kafkaConfig = require("./config");
 const moment = require("moment");
+const slugify = require('slugify')
 
 /**
  * Receive checkin message to kafka cluster
@@ -16,7 +17,9 @@ const sendMessage = async (airport, check) => {
 
     // create check in/out record
     const currentTime = moment();
-    const kafkaMessage = {airport: airport, checked: check, date: currentTime};
+    const words = slugify(airport).toLowerCase().split('-'); // create slug for airport
+    const slug = `${words[0]}-${words[1]}`;
+    const kafkaMessage = {airport: airport, slug: slug, checked: check, date: currentTime};
 
     await producer.send({
       topic: kafkaConfig.topic,
