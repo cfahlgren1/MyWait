@@ -163,5 +163,4 @@ Thumbs.db
 .DS_Store
 
 # Kafka
-data/
 serverless.yml
