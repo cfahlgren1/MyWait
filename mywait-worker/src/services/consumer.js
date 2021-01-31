@@ -1,9 +1,10 @@
 const { Kafka } = require("kafkajs");
 const kafkaConfig = require("./config");
-
 const kafka = new Kafka(kafkaConfig.config);
 const topic = kafkaConfig.topic;
 const consumer = kafka.consumer({ groupId: "mywait-workers" }); // set consumer to a group
+
+const airports = {};
 
 // connect and subscribe to topic
 const run = async () => {
@@ -13,16 +14,43 @@ const run = async () => {
   console.log("Subscribed to", topic);
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
-    const checkRecord = JSON.parse(message.value);
+      const checkRecord = JSON.parse(message.value);
 
-    // get attributes from checkin message
-    const checked = checkRecord.checked;
-    const airport = checkRecord.airport;
-    const date = checkRecord.date;
+      // get attributes from checkin message
+      const checked = checkRecord.checked;
+      const airport = checkRecord.airport;
+      const date = checkRecord.date;
+      const slug = checkRecord.slug;
 
-    console.log(`Received check${checked} from ${airport} at ${date}`);
+      // create airport if it doesn't exist
+      if (!airports[slug]) {
+        airports[slug] = checkRecord;
+        airports[slug].count = 0;
+      }
+
+      // process check in/out
+      if (checked === "in") {
+        airports[slug].count = airports[slug].count += 1;
+      } else if (checked === "out" && airports[slug].count > 0) {
+        airports[slug].count = airports[slug].count -= 1;
+      }
+
+      checkRecord.count = airports[slug].count;
+      console.log(`Received check${checked} from ${airport} at ${date}`);
+      io.emit("airportData", { message: JSON.stringify(checkRecord) });
     },
   });
+};
+
+const getAllCounts = () => {
+  const all_counts = [];
+  Object.keys(airports).forEach((airport) => {
+    all_counts.push({
+      message: JSON.stringify(airports[airport]),
+    });
+  });
+
+  return all_counts;
 };
 
 const errorTypes = ["unhandledRejection", "uncaughtException"];
@@ -51,4 +79,4 @@ signalTraps.map((type) => {
   });
 });
 
-module.exports = { run };
+module.exports = { run, getAllCounts };
