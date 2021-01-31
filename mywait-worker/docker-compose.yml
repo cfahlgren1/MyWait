@@ -1,23 +1,5 @@
 version: "3"
-
-networks:
-  web:
-    external: true
-
 services:
-  # reverse proxy caddy
-  caddy:
-    image: caddy:2-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /data/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - /data/caddy/data:/data
-      - /data/caddy/config:/config
-    networks:
-      - web
   # MyWait Worker Instance
   web:
     build: .
@@ -26,6 +8,4 @@ services:
       - .:/usr/src/app/
       - /usr/src/app/node_modules
     ports:
-      - "3030:3030"
-    networks:
-      - web
+      - 3030:3030
