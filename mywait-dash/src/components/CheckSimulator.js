@@ -24,17 +24,23 @@ const CheckSimulator = () => {
   const handleCheck = async (direction) => {
     // user checks in
     if (direction === "in") {
-      await axios.post(`http://localhost:8080/api/messages`, {
-        airport: "Boston International Airport",
-        check: "in",
-      });
+      await axios.post(
+        `https://5kynk8jkk6.execute-api.us-east-1.amazonaws.com/api/messages`,
+        {
+          airport: "Boston International Airport",
+          check: "in",
+        }
+      );
     }
     // user checks out
     else if (direction === "out") {
-      await axios.post(`http://localhost:8080/api/messages`, {
-        airport: "Boston International Airport",
-        check: "out",
-      });
+      await axios.post(
+        `https://5kynk8jkk6.execute-api.us-east-1.amazonaws.com/api/messages`,
+        {
+          airport: "Boston International Airport",
+          check: "out",
+        }
+      );
     }
   };
 
