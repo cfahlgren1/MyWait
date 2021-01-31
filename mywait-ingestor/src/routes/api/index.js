@@ -9,7 +9,9 @@ router.get("/", (req, res) => {
 // ingest messages into Apache Kafka
 router.post("/messages", async (req, res) => {
   if (!req.body.airport || !req.body.check) {
-    res.status(400).send({'response':'Missing parameter "message" in your request!'});
+    res
+      .status(400)
+      .send({ response: 'Missing parameter "message" in your request!' });
     return;
   }
   const body = req.body;
