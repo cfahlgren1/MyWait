@@ -13,7 +13,7 @@ app.use(cors());
 const server = http.createServer(app);
 global.io = socketio(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://mywait.live",
     methods: ["GET", "POST"],
   },
 });
