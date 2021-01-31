@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   zookeeper:
     image: zookeeper:3.4.9
@@ -43,7 +43,7 @@ services:
     volumes:
       - ./data/kafka2/data:/var/lib/kafka/data
     depends_on:
-      - zookeeper 
+      - zookeeper
   kafka3:
     image: confluentinc/cp-kafka:5.3.0
     hostname: kafka3

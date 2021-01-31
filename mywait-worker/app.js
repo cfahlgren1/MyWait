@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const socketio = require("socket.io");
-var cors = require("cors");
+const cors = require("cors");
 const kafka = require("./src/services/consumer");
 
 const app = express();
