@@ -17,7 +17,7 @@ Checkin Ingestor uses AWS Lambda to ingest messages from a REST API into Kafka D
 
 ## Deploy
 
-    $ npm run dev 
+    $ npm run dev
 
 ## Requirements
 

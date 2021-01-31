@@ -56,7 +56,8 @@ export default function SimpleCard(props) {
         </Typography>
         <Typography>
           <i>
-            "Estimated wait time: <b>{props.count * 2} minutes</b> "
+            "Estimated wait time:{" "}
+            <b>{Math.floor(props.count * 0.75)} minutes</b> "
           </i>
         </Typography>
       </CardContent>
