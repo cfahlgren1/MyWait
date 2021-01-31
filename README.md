@@ -1,4 +1,4 @@
-# MyWait ✈️
+# MyWait ✈️🎟️
 
 **Author:** Caleb Fahlgren
 **Hackathon:** a project for [Texas A&M Hacks](https://tamuhack2021.devpost.com/)

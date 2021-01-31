@@ -11,11 +11,21 @@ const port = 3030;
 app.use(cors());
 
 const server = http.createServer(app);
-global.io = socketio(server, {
-  cors: {
-    origin: "https://mywait.live",
-    methods: ["GET", "POST"],
+
+// cors configuration whitelist for client socket connection
+const whitelist = ["https://mywait.live", "https://www.mywait.live"];
+var corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
   },
+  methods: ["GET", "POST"],
+};
+global.io = socketio(server, {
+  cors: corsOptions,
 });
 
 app.get("/", (req, res) => {

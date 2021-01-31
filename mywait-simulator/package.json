@@ -1,0 +1,16 @@
+{
+  "name": "mywait-simulator",
+  "version": "1.0.0",
+  "description": "**Author:** Caleb Fahlgren **Hackathon:** a project for [Texas A&M Hacks](https://tamuhack2021.devpost.com/)",
+  "main": "simulate.js",
+  "scripts": {
+    "start": "nodemon simulate.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "nodemon": "^2.0.7"
+  }
+}
