@@ -1,5 +1,8 @@
 const axios = require("axios");
 
+var start = new Date();
+let count = 0;
+
 /*
   Simulate customers getting through TSA checkout
 */
@@ -10,7 +13,7 @@ const usersCheckoutLoop = () => {
     // Again
     usersCheckoutLoop();
 
-    // Every 4 sec
+    // Every 10ms
   }, 4000);
 };
 
@@ -26,7 +29,6 @@ const checkOut = () => {
       check: "out",
     }
   );
-  console.log("User Checked out!");
 };
 
 usersCheckoutLoop();
