@@ -4,7 +4,7 @@ import "chartjs-plugin-streaming";
 import { Line } from "react-chartjs-2";
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "https://worker.mywait.live/";
+const ENDPOINT = "https://worker.mywait.live";
 
 class LineChart extends React.Component {
   constructor(props) {

@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 import Card from "./Card";
 import LineChart from "./LineChart";
 
-const ENDPOINT = "http://localhost:3030";
+const ENDPOINT = "https://worker.mywait.live";
 
 const LineLengthWrapper = () => {
   const [count, setCount] = useState(0);

@@ -26,7 +26,7 @@ const checkOut = () => {
       check: "out",
     }
   );
+  console.log("User Checked out!");
 };
 
 usersCheckoutLoop();
-usersInOutLoop();
